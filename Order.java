@@ -38,17 +38,17 @@ public class Order {
 
 		if (food != null)
 		{
-			this.totalCost = this.food.getCost();
+			this.totalCost = this.totalCost + this.food.getCost();
 		}
 		
 		if (drink != null)
 		{
-			this.totalCost = this.drink.getCost();
+			this.totalCost = this.totalCost + this.drink.getCost();
 		}
 		
 		if (meal != null)
 		{
-			this.totalCost = this.meal.getCost();
+			this.totalCost = this.totalCost + this.meal.getCost();
 		}
 	}
 
