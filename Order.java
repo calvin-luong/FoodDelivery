@@ -17,7 +17,7 @@ public class Order {
 	private double totalCost;
 
 	/*
-	 * Cponstructor
+	 * Constructor
 	 * Adds the account and restaurant for the order
 	 */
 	public Order(Account account, Restaurant restaurant)
@@ -58,6 +58,14 @@ public class Order {
 	public void setTimer(int minutes, int seconds)
 	{
 		timer = new Timer(minutes, seconds);
+	}
+	
+	/*
+	 * Gets the timer
+	 */
+	public Timer getTimer()
+	{
+		return timer;
 	}
 
 	/*
