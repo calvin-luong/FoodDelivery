@@ -1,6 +1,8 @@
 
 public class Meal {
 	
+	// Name of meal
+		private String name;
 	// List of drinks
 	private Drink drink;
 	// List of foods
@@ -13,11 +15,20 @@ public class Meal {
 	 * Sets the drink and food
 	 * Calculates cost based on the sum of drink and food cost
 	 */
-	public Meal(Drink drink, Food food)
+	public Meal(String name, Drink drink, Food food)
 	{
+		this.name = name;
 		this.drink = drink;
 		this.food = food;
 		this.cost = drink.getCost() + food.getCost();
+	}
+	
+	/*
+	 * Gets the meal's name
+	 */
+	public String getName()
+	{
+		return name;
 	}
 	
 	/*
