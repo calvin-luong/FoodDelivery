@@ -2,7 +2,7 @@
 public class Meal {
 	
 	// Name of meal
-		private String name;
+	private String name;
 	// List of drinks
 	private Drink drink;
 	// List of foods
