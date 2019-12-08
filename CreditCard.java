@@ -2,11 +2,11 @@
 public class CreditCard {
 	
 	// Card number
-	private int number;
+	private String number;
 	// Card exp date
-	private int expDate;
+	private String expDate;
 	// Card cvv number
-	private int CVV;
+	private String CVV;
 	// Name on card
 	private String name;
 	
@@ -14,7 +14,7 @@ public class CreditCard {
 	 * Constructor
 	 * Sets the number, exp date, cvv, and name
 	 */
-	public CreditCard(int number, int expDate, int CVV, String name)
+	public CreditCard(String number, String expDate, String CVV, String name)
 	{
 		this.number = number;
 		this.expDate = expDate;
@@ -25,7 +25,7 @@ public class CreditCard {
 	/*
 	 * Returns the card number
 	 */
-	public int getNumber()
+	public String getNumber()
 	{
 		return number;
 	}
@@ -33,7 +33,7 @@ public class CreditCard {
 	/*
 	 * Returns the exp date
 	 */
-	public int getExpDate()
+	public String getExpDate()
 	{
 		return expDate;
 	}
@@ -42,7 +42,7 @@ public class CreditCard {
 	 * Returns the card's CVV 
 	 * (the three digit on the back)
 	 */
-	public int getCVV()
+	public String getCVV()
 	{
 		return CVV;
 	}
@@ -58,7 +58,7 @@ public class CreditCard {
 	/*
 	 * When the customer sets a new card
 	 */
-	public void setNewCard(int number, int expDate, int CVV)
+	public void setNewCard(String number, String expDate, String CVV)
 	{
 		this.number = number;
 		this.expDate = expDate;

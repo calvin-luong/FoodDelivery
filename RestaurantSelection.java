@@ -125,10 +125,13 @@ public class RestaurantSelection extends JFrame {
 		s3.setOpaque(true);
 		s3.setBackground(Color.LIGHT_GRAY);
 		
+		// PLACE HOLDER FOR NAME
+		String name = Login.userList.get(Login.user).getCustomer().getName();
+		
 		authors = new JTextField();
 		authors.setBackground(Color.LIGHT_GRAY);
 		authors.setEditable(false);
-		authors.setText("Welcome, First Last!");
+		authors.setText("Welcome " + name + "!");
 		authors.setHorizontalAlignment(SwingConstants.CENTER);
 		authors.setColumns(10);
 		

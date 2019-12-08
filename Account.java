@@ -11,6 +11,8 @@ public class Account {
 	private Customer customerInformation;
 	// Restaurant info
 	private Restaurant restaurantInformation;
+	// Card
+	private CreditCard c;
 
 	/*
 	 * Constructor
@@ -51,6 +53,7 @@ public class Account {
 	{
 		if (accountType.equals("customer"))
 		{
+			c = card;
 			customerInformation = new Customer(name, address, card);
 		}
 	}
@@ -64,5 +67,29 @@ public class Account {
 		{
 			restaurantInformation = new Restaurant(name, address);
 		}
+	}
+	
+	/*
+	 * Returns username
+	 */
+	public String getUsername()
+	{
+		return username;
+	}
+	
+	/*
+	 * Returns password
+	 */
+	public String getPassword()
+	{
+		return password;
+	}
+	
+	/*
+	 * Gets customer
+	 */
+	public Customer getCustomer()
+	{
+		return customerInformation;
 	}
 }
