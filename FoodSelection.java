@@ -32,6 +32,7 @@ public class FoodSelection extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
+		// Restaurant Name
 		JLabel name = new JLabel("Restaurant Name");
 		name.setBackground(Color.GRAY);
 		name.setOpaque(true);
