@@ -14,7 +14,8 @@ public class CardWindow {
 	
 	public static CardWindow window;
 	
-	
+	// The user's position in the ArrayList
+	public static int pos;
 
 	/**
 	 * Launch the application.
@@ -46,7 +47,9 @@ public class CardWindow {
 	private void initialize() {
 		
 		// Grabs card info
-		CreditCard c = Login.userList.get(Login.user).getCustomer().getCard();
+		System.out.println(pos);
+		CreditCard c = Login.userList.get(pos).getCustomer().getCard();
+		
 		String number = c.getNumber();
 		String expDate = c.getExpDate();
 		String CVV = c.getCVV();

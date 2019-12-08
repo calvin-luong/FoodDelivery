@@ -20,10 +20,13 @@ public class Login {
 	private JTextField textField_1;
 
 	public static ArrayList<Account> userList = new ArrayList<Account>();
-	public static int user;
 
-	private String accountType;
-	
+	// The user's position in the ArrayList
+	public static int pos;
+
+	// The total amount of users
+	public static int amountOfUsers = -1;
+
 	public static Login window;
 
 	/**
@@ -94,22 +97,27 @@ public class Login {
 				String Password = textField_1.getText();
 				boolean dne = true;
 
+				pos = 0;
+
 				// Checks if the username and password are correct
 				for (int i = 0; i < userList.size(); i++)
 				{
 					String u = userList.get(i).getUsername();
 					String p = userList.get(i).getPassword();
+
 					if (u.equals(Username) && p.equals(Password))
-					{						
-						user = i;
+					{									
 						textField.setText(null);
 						textField_1.setText(null);
 
-						Main main = new Main();
-						Main.main(null);
-						
 						dne = false;
+
+						Main m = new Main();
+						m.pos = pos;
+						m.main(null);
+
 					}
+					pos++;
 				}						
 
 				// Error case
@@ -131,39 +139,38 @@ public class Login {
 
 				String Username = textField.getText();
 				String Password = textField_1.getText();
+				boolean error = true;
 
-				Account user = new Account(Username, Password, accountType);
+				// Username checking
+				for (int i = 0; i < userList.size(); i++)
+				{
+					String u = userList.get(i).getUsername();
 
-				userList.add(user);
+					if (u.equals(Username))
+					{
+						JOptionPane.showMessageDialog(null, "Username is taken", "Registration error", JOptionPane.ERROR_MESSAGE);
+						textField.setText(null);
+						textField_1.setText(null);
+						error = false;
+					}
+				}
+
+				if(error == true)
+				{
+					Account user = new Account(Username, Password);
+
+					userList.add(user);
+					amountOfUsers++;			
+
+					pos = amountOfUsers;
+
+					Setting s = new Setting();
+					s.pos = amountOfUsers;
+					s.main(null);
+				}
 			}
 		});
 		btnRegister.setBounds(463, 308, 120, 30);
 		frame.getContentPane().add(btnRegister);
-
-		// Customer Account
-		JRadioButton rdbtnCustomer = new JRadioButton("Customer");
-		rdbtnCustomer.addActionListener(new ActionListener()
-		{
-
-			public void actionPerformed(ActionEvent e)
-			{
-				accountType = "Customer";
-			}
-		});
-		rdbtnCustomer.setBounds(283, 266, 109, 23);
-		frame.getContentPane().add(rdbtnCustomer);
-
-		// Restaurant Button
-		JRadioButton rdbtnRestuarant = new JRadioButton("Restuarant ");
-		rdbtnRestuarant.addActionListener(new ActionListener()
-		{
-
-			public void actionPerformed(ActionEvent e)
-			{
-				accountType = "Restaurant";
-			}
-		});
-		rdbtnRestuarant.setBounds(474, 266, 109, 23);
-		frame.getContentPane().add(rdbtnRestuarant);
 	}
 }

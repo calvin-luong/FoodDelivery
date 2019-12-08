@@ -23,6 +23,8 @@ public class Setting {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	
+	public static int pos;
 
 	/**
 	 * Launch the application.
@@ -158,8 +160,12 @@ public class Setting {
 				String expDate = textField_4.getText();
 				String CVV = textField_5.getText();
 
-				Login.userList.get(Login.user).setCustomer(firstName + " " + lastName, address, new CreditCard(cardNumber, expDate, CVV, firstName + " " + lastName));
+				Login.userList.get(pos).setCustomer(firstName + " " + lastName, address, new CreditCard(cardNumber, expDate, CVV, firstName + " " + lastName));
 				window.frame.setVisible(false);
+				
+				Main m = new Main();
+				m.pos = pos;
+				m.main(null);
 			}
 		});
 		btnLogin.setBounds(285, 537, 120, 30);

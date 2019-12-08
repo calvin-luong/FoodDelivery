@@ -10,6 +10,9 @@ public class Main {
 	private JFrame frame;
 	
 	public static Main window;
+	
+	// The user's position in the ArrayList
+	public static int pos;
 
 	/**
 	 * Launch the application.
@@ -49,6 +52,7 @@ public class Main {
 			public void actionPerformed(ActionEvent e) {
 				
 				CardWindow cw = new CardWindow();
+				cw.pos = pos;
 				cw.main(null);
 			}
 		});
@@ -58,11 +62,9 @@ public class Main {
 		// Restaurants in the area
 		JButton btnNewButton_1 = new JButton("Restaurants");
 		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
+			public void actionPerformed(ActionEvent e) {	
 				RestaurantSelection rs = new RestaurantSelection();
 				rs.main(null);
-				
 			}
 		});
 		btnNewButton_1.setBounds(128, 48, 177, 85);
@@ -82,23 +84,13 @@ public class Main {
 		btnSignOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				window.frame.setVisible(false);
+				window.frame.dispose();
 			}
 		});
 		btnSignOut.setBounds(10, 11, 89, 23);
 		frame.getContentPane().add(btnSignOut);
 		
-		// Settings to add name and card
-		JButton btnSetting = new JButton("Setting");
-		btnSetting.setBounds(128, 413, 177, 85);
-		frame.getContentPane().add(btnSetting);
-		btnSetting.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				Setting setting = new Setting();
-				setting.main(null);
-			}
-		});
+
 	}
 
 }
