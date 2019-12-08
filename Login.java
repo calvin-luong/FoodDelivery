@@ -161,8 +161,10 @@ public class Login {
 
 					userList.add(user);
 					amountOfUsers++;			
-
 					pos = amountOfUsers;
+					
+					textField.setText(null);
+					textField_1.setText(null);
 
 					Setting s = new Setting();
 					s.pos = amountOfUsers;
