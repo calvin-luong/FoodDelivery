@@ -20,6 +20,8 @@ public class Login {
 	private JTextField textField_1;
 
 	public static ArrayList<Account> userList = new ArrayList<Account>();
+	public static ArrayList<Order> orders = new ArrayList<>();
+
 
 	// The user's position in the ArrayList
 	public static int pos;

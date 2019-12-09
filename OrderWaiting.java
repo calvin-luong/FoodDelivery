@@ -10,19 +10,23 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Random;
 import java.awt.event.ActionEvent;
 
 public class OrderWaiting extends JFrame {
 
 	private JPanel contentPane;
+	private JTextPane waiting;;
 	private JTextField orderField;
 	private JTextField addressField;
+	private int seconds;
 	
 	// The user's position in the ArrayList
 			public static int pos;
@@ -72,13 +76,28 @@ public class OrderWaiting extends JFrame {
 		addressField.setEditable(false);
 		addressField.setColumns(10);
 		
-		JTextPane waiting = new JTextPane();
+		int delay = 1000;
+		new Timer(delay, task).start();
+		seconds = 15;
+		int mm = (seconds / 60) % 60;
+        int minuteOnes = mm % 10;
+        int minuteTens = (mm % 100) / 10;
+	    int ss = seconds % 60;
+	    String min = minuteTens + "" + minuteOnes;
+        int secondOnes = ss % 10;
+        int secondTens = (ss % 100) / 10;
+	    String sec = secondTens + "" + secondOnes;
+		
+		waiting = new JTextPane();
 		waiting.setBackground(Color.LIGHT_GRAY);
-		waiting.setText("Food will be delivered in XX:XX minutes.\nYou will be directed to an order completed page when the food arrives.");
+		waiting.setText("Food will be delivered in " + min + ":" + sec + " minutes.\nYou will be directed to an order completed page when the food arrives.");
 		waiting.setOpaque(true);
 		waiting.setEditable(false);
 		
+		Login.orders.add(new Order(name, orderNum, d, f, m, cost, customerAddress));
+		
 		JButton btnConfirm = new JButton("Confirm");
+		btnConfirm.setVisible(false);
 		btnConfirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				OrderDone od = new OrderDone();
@@ -148,4 +167,26 @@ public class OrderWaiting extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 
 	}
+	
+	ActionListener task = new ActionListener() {
+		public void actionPerformed(ActionEvent ae) {
+			seconds = seconds - 1;
+			int mm = (seconds / 60) % 60;
+            int minuteOnes = mm % 10;
+            int minuteTens = (mm % 100) / 10;
+		    int ss = seconds % 60;
+		    String min = minuteTens + "" + minuteOnes;
+            int secondOnes = ss % 10;
+            int secondTens = (ss % 100) / 10;
+		    String sec = secondTens + "" + secondOnes;
+			waiting.setText("Food will be delivered in " + min + ":" + sec + " minutes.\nYou will be directed to an order completed page when the food arrives.");
+			if (seconds == 0) {
+				OrderDone od = new OrderDone();
+				od.setVisible(true);
+				setVisible(false);
+			}
+			waiting.repaint();
+		}
+	};
+	
 }

@@ -50,7 +50,6 @@ public class Main {
 		JButton btnNewButton = new JButton("Card Information");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				CardWindow cw = new CardWindow();
 				cw.pos = pos;
 				cw.main(null);
@@ -65,7 +64,6 @@ public class Main {
 			public void actionPerformed(ActionEvent e) {	
 				RestaurantSelection rs = new RestaurantSelection();
 				rs.pos = pos;
-				
 				rs.main(null);
 			}
 		});
@@ -76,6 +74,8 @@ public class Main {
 		JButton btnNewButton_2 = new JButton("Orders");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				OrderHistory oh = new OrderHistory();
+				oh.main(null); 
 			}
 		});
 		btnNewButton_2.setBounds(128, 171, 177, 85);

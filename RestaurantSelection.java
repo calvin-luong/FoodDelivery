@@ -144,6 +144,8 @@ public class RestaurantSelection extends JFrame {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
+				Main m = new Main();
+				m.main(null);
 			}
 		});
 
