@@ -84,7 +84,8 @@ public class OrderDone extends JFrame {
 					.addComponent(exit, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
-		contentPane.setLayout(gl_contentPane);
-	}
+		contentPane.setLayout(gl_contentPane);	
 
+	}
+	
 }

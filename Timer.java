@@ -35,7 +35,7 @@ public class Timer {
 
 		for (int i = this.seconds; i > 0; i--)
 		{
-			Thread.sleep(1);
+			Thread.sleep(1000);
 			this.seconds--;
 
 			// This section just prints out the timer
@@ -61,12 +61,4 @@ public class Timer {
 	{
 		return seconds;
 	}
-	
-	// Tester
-	public static void main (String args[]) throws InterruptedException
-	{
-		Timer t = new Timer(5, 0);
-		t.startTimer();
-	}
-
 }

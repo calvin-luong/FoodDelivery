@@ -146,18 +146,6 @@ public class OrderWaiting extends JFrame {
 					.addComponent(btnConfirm))
 		);
 		contentPane.setLayout(gl_contentPane);
-		
-		/*
-		Timer t = new Timer(3, 0);
-		try {
-			t.startTimer();
-			if (t.getSeconds() == 0)
-			{
-				waiting.setText("Your food is here!");
-			}
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+
 	}
 }
