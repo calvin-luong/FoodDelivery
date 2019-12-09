@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Account {
 
@@ -7,6 +8,8 @@ public class Account {
 	private String password;
 	// Customer info
 	private Customer customerInformation;
+	
+	public ArrayList<Order> orders;
 
 	/*
 	 * Constructor
@@ -16,6 +19,7 @@ public class Account {
 	{
 		this.username = username;
 		this.password = password;
+		orders = new ArrayList<>();
 	}
 
 	/*

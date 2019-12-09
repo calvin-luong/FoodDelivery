@@ -41,7 +41,6 @@ public class OrderWaiting extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		System.out.println("waiting" + pos);
 		String name = Login.userList.get(pos).getCustomer().getName();
 		String ty = "Thank you, " + name + "!";
 		JLabel completion = new JLabel(ty);
@@ -94,7 +93,9 @@ public class OrderWaiting extends JFrame {
 		waiting.setOpaque(true);
 		waiting.setEditable(false);
 		
-		Login.orders.add(new Order(name, orderNum, d, f, m, cost, customerAddress));
+		//Login.orders.add(new Order(name, orderNum, d, f, m, cost, customerAddress));
+		
+		Login.userList.get(pos).orders.add(new Order(name, orderNum, d, f, m, cost, customerAddress));
 		
 		JButton btnConfirm = new JButton("Confirm");
 		btnConfirm.setVisible(false);

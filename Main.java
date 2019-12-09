@@ -75,6 +75,7 @@ public class Main {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				OrderHistory oh = new OrderHistory();
+				oh.pos = pos;
 				oh.main(null); 
 			}
 		});

@@ -19,6 +19,8 @@ import java.awt.event.ActionEvent;
 public class OrderHistory extends JFrame {
 
 	private JPanel contentPane;
+	
+	public static int pos;
 
 	/**
 	 * Launch the application.
@@ -54,7 +56,7 @@ public class OrderHistory extends JFrame {
 		textPane.setEditable(false);
 		JScrollPane jsp = new JScrollPane(textPane);
 		
-		for (Order o: Login.orders) {
+		for (Order o: Login.userList.get(pos).orders) {
 			String name = o.getName();
 			int orderNum = o.getOrderNum();
 			String d = o.getDrink();
@@ -69,8 +71,6 @@ public class OrderHistory extends JFrame {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				Main m = new Main();
-				m.main(null);
 			}
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
