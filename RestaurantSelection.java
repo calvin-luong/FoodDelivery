@@ -25,6 +25,9 @@ public class RestaurantSelection extends JFrame {
 	private JTextField authors;
 	public String rName;
 	public static RestaurantSelection frame;
+	
+	// The user's position in the ArrayList
+		public static int pos;
 
 	/**
 	 * Launch the application.
@@ -95,9 +98,9 @@ public class RestaurantSelection extends JFrame {
 		s1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				rName = "WcDonald's";
-				FoodSelection fs = new FoodSelection(rName);
-
+				FoodSelection fs = new FoodSelection(rName, pos);
 				fs.setVisible(true);
+				setVisible(false);
 			}
 		});
 		s1.setOpaque(true);
@@ -107,9 +110,9 @@ public class RestaurantSelection extends JFrame {
 		s2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				rName = "Poppies";
-				FoodSelection2 fs = new FoodSelection2(rName);
-
+				FoodSelection2 fs = new FoodSelection2(rName, pos);
 				fs.setVisible(true);
+				setVisible(false);
 			}
 		});
 		s2.setOpaque(true);
@@ -119,16 +122,16 @@ public class RestaurantSelection extends JFrame {
 		s3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				rName = "Bizza Hut";
-				FoodSelection3 fs = new FoodSelection3(rName);
-
+				FoodSelection3 fs = new FoodSelection3(rName, pos);
 				fs.setVisible(true);
+				setVisible(false);
 			}
 		});
 		s3.setOpaque(true);
 		s3.setBackground(Color.LIGHT_GRAY);
 
 		// PLACE HOLDER FOR NAME
-		String name = Login.userList.get(Login.pos).getCustomer().getName();
+		String name = Login.userList.get(pos).getCustomer().getName();
 
 		authors = new JTextField();
 		authors.setBackground(Color.LIGHT_GRAY);

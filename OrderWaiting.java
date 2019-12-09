@@ -23,18 +23,22 @@ public class OrderWaiting extends JFrame {
 	private JPanel contentPane;
 	private JTextField orderField;
 	private JTextField addressField;
+	
+	// The user's position in the ArrayList
+			public static int pos;
 
 	/**
 	 * Create the frame.
 	 */
-	public OrderWaiting(String d, String f, String m, double cost) {
+	public OrderWaiting(String d, String f, String m, double cost, int pos) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		String name = Login.userList.get(Login.pos).getCustomer().getName();
+		System.out.println("waiting" + pos);
+		String name = Login.userList.get(pos).getCustomer().getName();
 		String ty = "Thank you, " + name + "!";
 		JLabel completion = new JLabel(ty);
 		completion.setOpaque(true);
@@ -61,7 +65,7 @@ public class OrderWaiting extends JFrame {
 		contentsField.setEditable(false);
 		
 		JLabel address = new JLabel("Delivering to...");
-		String customerAddress = Login.userList.get(Login.pos).getCustomer().getAddress();
+		String customerAddress = Login.userList.get(pos).getCustomer().getAddress();
 		
 		addressField = new JTextField();
 		addressField.setText(customerAddress);
@@ -79,6 +83,7 @@ public class OrderWaiting extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				OrderDone od = new OrderDone();
 				od.setVisible(true);
+				setVisible(false);
 			}
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -142,6 +147,7 @@ public class OrderWaiting extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 		
+		/*
 		Timer t = new Timer(3, 0);
 		try {
 			t.startTimer();
@@ -152,6 +158,6 @@ public class OrderWaiting extends JFrame {
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 }

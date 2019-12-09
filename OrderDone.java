@@ -63,7 +63,7 @@ public class OrderDone extends JFrame {
 		JButton exit = new JButton("Exit");
 		exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				setVisible(false);
 			}
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);

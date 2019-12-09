@@ -64,6 +64,8 @@ public class Main {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
 				RestaurantSelection rs = new RestaurantSelection();
+				rs.pos = pos;
+				
 				rs.main(null);
 			}
 		});

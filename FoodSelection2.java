@@ -26,15 +26,20 @@ public class FoodSelection2 extends JFrame {
 	public String orderedFood = "No food";
 	public String orderedMeal = "No meal";
 	
+	// The user's position in the ArrayList
+		public static int pos;
+	
 	/**
 	 * Create the frame.
 	 */
-	public FoodSelection2(String rn) {
+	public FoodSelection2(String rn, int pos) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 618, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		
+		this.pos = pos;
 		
 		// Restaurant Name
 		JLabel name = new JLabel(rn + " Menu");
@@ -107,6 +112,8 @@ public class FoodSelection2 extends JFrame {
 		JButton back = new JButton("Back");
 		back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				RestaurantSelection rs = new RestaurantSelection();
+				rs.main(null);
 				setVisible(false);
 			}
 		});
@@ -122,8 +129,9 @@ public class FoodSelection2 extends JFrame {
 		JButton confirm = new JButton("Confirm Order");
 		confirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				OrderWaiting ow = new OrderWaiting(orderedDrink, orderedFood, orderedMeal, i);
+				OrderWaiting ow = new OrderWaiting(orderedDrink, orderedFood, orderedMeal, i, pos);
 				ow.setVisible(true);
+				setVisible(false);
 			}
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
