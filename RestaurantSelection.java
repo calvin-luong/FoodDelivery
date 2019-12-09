@@ -23,7 +23,7 @@ public class RestaurantSelection extends JFrame {
 	private JTextField d2;
 	private JTextField d3;
 	private JTextField authors;
-
+	public String rName;
 	public static RestaurantSelection frame;
 
 	/**
@@ -47,12 +47,10 @@ public class RestaurantSelection extends JFrame {
 	 */
 	public RestaurantSelection() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 639, 469);
+		setBounds(100, 100, 759, 569);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-
-
 
 		JLabel title = new JLabel("Food Delivery");
 		title.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
@@ -60,44 +58,44 @@ public class RestaurantSelection extends JFrame {
 		title.setBackground(Color.GRAY);
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 
-		JLabel r1 = new JLabel("Restaurant #1");
+		JLabel r1 = new JLabel("WcDonald's");
 		r1.setHorizontalAlignment(SwingConstants.CENTER);
 		r1.setOpaque(true);
 		r1.setBackground(Color.GRAY);
 
-		JLabel r2 = new JLabel("Restaurant #2");
+		JLabel r2 = new JLabel("Poppies");
 		r2.setHorizontalAlignment(SwingConstants.CENTER);
 		r2.setOpaque(true);
 		r2.setBackground(Color.GRAY);
 
-		JLabel r3 = new JLabel("Restaurant #3");
+		JLabel r3 = new JLabel("Bizza Hut");
 		r3.setHorizontalAlignment(SwingConstants.CENTER);
 		r3.setOpaque(true);
 		r3.setBackground(Color.GRAY);
 
 		d1 = new JTextField();
 		d1.setHorizontalAlignment(SwingConstants.CENTER);
-		d1.setText("Description #1");
+		d1.setText("yumy borgar");
 		d1.setEditable(false);
 		d1.setColumns(10);
 
 		d2 = new JTextField();
 		d2.setHorizontalAlignment(SwingConstants.CENTER);
-		d2.setText("Description #2");
+		d2.setText("chiggen");
 		d2.setEditable(false);
 		d2.setColumns(10);
 
 		d3 = new JTextField();
 		d3.setHorizontalAlignment(SwingConstants.CENTER);
-		d3.setText("Description #3");
+		d3.setText("mario");
 		d3.setEditable(false);
 		d3.setColumns(10);
 
-		JButton s1 = new JButton("Select #1");
+		JButton s1 = new JButton("Order");
 		s1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RestaurantSelection rs = new RestaurantSelection();
-				FoodSelection fs = new FoodSelection(rs);
+				rName = "WcDonald's";
+				FoodSelection fs = new FoodSelection(rName);
 
 				fs.setVisible(true);
 			}
@@ -105,11 +103,11 @@ public class RestaurantSelection extends JFrame {
 		s1.setOpaque(true);
 		s1.setBackground(Color.LIGHT_GRAY);
 
-		JButton s2 = new JButton("Select #2");
+		JButton s2 = new JButton("Order");
 		s2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RestaurantSelection rs = new RestaurantSelection();
-				FoodSelection fs = new FoodSelection(rs);
+				rName = "Poppies";
+				FoodSelection2 fs = new FoodSelection2(rName);
 
 				fs.setVisible(true);
 			}
@@ -117,11 +115,11 @@ public class RestaurantSelection extends JFrame {
 		s2.setOpaque(true);
 		s2.setBackground(Color.LIGHT_GRAY);
 
-		JButton s3 = new JButton("Select #3");
+		JButton s3 = new JButton("Order");
 		s3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RestaurantSelection rs = new RestaurantSelection();
-				FoodSelection fs = new FoodSelection(rs);
+				rName = "Bizza Hut";
+				FoodSelection3 fs = new FoodSelection3(rName);
 
 				fs.setVisible(true);
 			}
@@ -135,7 +133,7 @@ public class RestaurantSelection extends JFrame {
 		authors = new JTextField();
 		authors.setBackground(Color.LIGHT_GRAY);
 		authors.setEditable(false);
-		authors.setText("Welcome " + name + "!");
+		authors.setText("Welcome, " + name + "!");
 		authors.setHorizontalAlignment(SwingConstants.CENTER);
 		authors.setColumns(10);
 

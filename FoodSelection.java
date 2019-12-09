@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -19,32 +21,89 @@ public class FoodSelection extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField cost;
-
+	private double i = 0.00;
+	public String orderedDrink = "No drink";
+	public String orderedFood = "No food";
+	public String orderedMeal = "No meal";
+	
 	/**
 	 * Create the frame.
 	 */
-	public FoodSelection(RestaurantSelection rs) {
+	public FoodSelection(String rn) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 450);
+		setBounds(100, 100, 618, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
 		// Restaurant Name
-		JLabel name = new JLabel("Restaurant Name");
+		JLabel name = new JLabel(rn + " Menu");
 		name.setBackground(Color.GRAY);
 		name.setOpaque(true);
 		name.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		name.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel drink = new JLabel("Drink:");
-		JComboBox drinkbox = new JComboBox();
+		String[] drinks = {"", "Soda", "Water"};
+		JComboBox drinkbox = new JComboBox(drinks);
+		drinkbox.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e)
+		{
+			if (e.getSource() == drinkbox)
+			{
+				JComboBox cb = (JComboBox)e.getSource();
+				String msg = (String)cb.getSelectedItem();
+				switch (msg) 
+				{
+				case "":;
+				case "Soda": i += 3.00; cost.setText(Double.toString(i));  orderedDrink = "Soda"; break;
+				case "Water": i += 1.00; cost.setText(Double.toString(i)); orderedDrink = "Water"; break;
+				}
+			}
+		}}
+		);
 		
 		JLabel food = new JLabel("Food:");
-		JComboBox foodbox = new JComboBox();
+		String[] foods = {"", "Big Wac", "Nuggets", "Fries"};
+		JComboBox foodbox = new JComboBox(foods);
+		foodbox.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e)
+		{
+			if (e.getSource() == foodbox)
+			{
+				JComboBox cb = (JComboBox)e.getSource();
+				String msg = (String)cb.getSelectedItem();
+				switch (msg) 
+				{
+				case "":;
+				case "Big Wac": i += 4.00; cost.setText(Double.toString(i)); orderedFood = "Big Wac"; break;
+				case "Nuggets": i += 5.00; cost.setText(Double.toString(i)); orderedFood = "Nuggets"; break;
+				case "Fries": i += 2.00; cost.setText(Double.toString(i)); orderedFood = "Fries"; break;
+				}
+			}
+		}}
+		);
 		
 		JLabel meal = new JLabel("Meal:");
-		JComboBox mealbox = new JComboBox();
+		String[] meals = {"", "Big Wac and Fries", "Happy Meal"};
+		JComboBox mealbox = new JComboBox(meals);
+		mealbox.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e)
+		{
+			if (e.getSource() == mealbox)
+			{
+				JComboBox cb = (JComboBox)e.getSource();
+				String msg = (String)cb.getSelectedItem();
+				switch (msg) 
+				{
+				case "":;
+				case "Big Wac and Fries": i += 5.00; cost.setText(Double.toString(i)); orderedMeal = "Big Wac and Fries"; break;
+				case "Nuggets and Fries": i += 6.00; cost.setText(Double.toString(i)); orderedMeal = "Nuggets and Fries"; break;
+				case "Happy Meal": i += 3.50; cost.setText(Double.toString(i)); orderedMeal = "Happy Meal"; break;
+				}
+			}
+		}}
+		);
 		
 		JButton back = new JButton("Back");
 		back.addActionListener(new ActionListener() {
@@ -58,10 +117,16 @@ public class FoodSelection extends JFrame {
 		cost.setOpaque(true);
 		cost.setEditable(false);
 		cost.setHorizontalAlignment(SwingConstants.CENTER);
-		cost.setText("COST:\n\n$XX.XX\n");
+		cost.setText(Double.toString(i));
 		cost.setColumns(10);
 		
 		JButton confirm = new JButton("Confirm Order");
+		confirm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				OrderWaiting ow = new OrderWaiting(orderedDrink, orderedFood, orderedMeal, i);
+				ow.setVisible(true);
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)

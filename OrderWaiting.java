@@ -13,6 +13,10 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextPane;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.util.Random;
+import java.awt.event.ActionEvent;
 
 public class OrderWaiting extends JFrame {
 
@@ -23,23 +27,28 @@ public class OrderWaiting extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public OrderWaiting() {
+	public OrderWaiting(String d, String f, String m, double cost) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JLabel completion = new JLabel("Thank you, First Last!");
+		String name = Login.userList.get(Login.pos).getCustomer().getName();
+		String ty = "Thank you, " + name + "!";
+		JLabel completion = new JLabel(ty);
 		completion.setOpaque(true);
 		completion.setHorizontalAlignment(SwingConstants.CENTER);
 		completion.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		completion.setBackground(Color.GRAY);
 		
-		JLabel order = new JLabel("Order #:");
+		Random random = new Random();
+		int orderNum = random.nextInt(100000);
+		
+		JLabel order = new JLabel("Order #: " + Integer.toString(orderNum));
 		
 		orderField = new JTextField();
-		orderField.setText("#");
+		orderField.setText("# " + Integer.toString(orderNum));
 		orderField.setEditable(false);
 		orderField.setColumns(10);
 		
@@ -47,32 +56,42 @@ public class OrderWaiting extends JFrame {
 		
 		JTextPane contentsField = new JTextPane();
 		contentsField.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-		contentsField.setText("- ITEM\n- ITEM\n- ITEM\n\nCOST: $XX.XX");
+		
+		contentsField.setText(d + "\n" + f + "\n" + m + "\n" + "COST: " + Double.toString(cost));
 		contentsField.setEditable(false);
 		
 		JLabel address = new JLabel("Delivering to...");
+		String customerAddress = Login.userList.get(Login.pos).getCustomer().getAddress();
 		
 		addressField = new JTextField();
-		addressField.setText("Address");
+		addressField.setText(customerAddress);
 		addressField.setEditable(false);
 		addressField.setColumns(10);
 		
 		JTextPane waiting = new JTextPane();
 		waiting.setBackground(Color.LIGHT_GRAY);
-		waiting.setText("Food will be delivery in XX:XX minutes.\nYou will be directed to an order completed page when the food arrives.");
+		waiting.setText("Food will be delivered in XX:XX minutes.\nYou will be directed to an order completed page when the food arrives.");
 		waiting.setOpaque(true);
 		waiting.setEditable(false);
+		
+		JButton btnConfirm = new JButton("Confirm");
+		btnConfirm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OrderDone od = new OrderDone();
+				od.setVisible(true);
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(contents)
-					.addContainerGap(490, Short.MAX_VALUE))
+					.addContainerGap(468, Short.MAX_VALUE))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(address)
-					.addContainerGap(497, Short.MAX_VALUE))
+					.addContainerGap(477, Short.MAX_VALUE))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
@@ -81,19 +100,23 @@ public class OrderWaiting extends JFrame {
 						.addComponent(orderField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(466))
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(43)
-					.addComponent(waiting, GroupLayout.PREFERRED_SIZE, 509, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(44, Short.MAX_VALUE))
-				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(addressField, GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
 					.addContainerGap())
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(contentsField, GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+					.addComponent(contentsField, GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
 					.addContainerGap())
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(completion, GroupLayout.PREFERRED_SIZE, 590, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(33)
+					.addComponent(waiting, GroupLayout.PREFERRED_SIZE, 509, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(60, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(230)
+					.addComponent(btnConfirm, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(271, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -112,10 +135,23 @@ public class OrderWaiting extends JFrame {
 					.addComponent(address)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(addressField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(waiting, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-					.addGap(18))
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(btnConfirm))
 		);
 		contentPane.setLayout(gl_contentPane);
+		
+		Timer t = new Timer(3, 0);
+		try {
+			t.startTimer();
+			if (t.getSeconds() == 0)
+			{
+				waiting.setText("Your food is here!");
+			}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
