@@ -42,7 +42,7 @@ public class Main {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 475);
+		frame.setBounds(100, 100, 600, 450);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -55,7 +55,7 @@ public class Main {
 				cw.main(null);
 			}
 		});
-		btnNewButton.setBounds(128, 296, 177, 85);
+		btnNewButton.setBounds(209, 299, 177, 85);
 		frame.getContentPane().add(btnNewButton);
 		
 		// Restaurants in the area
@@ -67,7 +67,7 @@ public class Main {
 				rs.main(null);
 			}
 		});
-		btnNewButton_1.setBounds(128, 48, 177, 85);
+		btnNewButton_1.setBounds(209, 51, 177, 85);
 		frame.getContentPane().add(btnNewButton_1);
 		
 		// Orders
@@ -79,7 +79,7 @@ public class Main {
 				oh.main(null); 
 			}
 		});
-		btnNewButton_2.setBounds(128, 171, 177, 85);
+		btnNewButton_2.setBounds(209, 174, 177, 85);
 		frame.getContentPane().add(btnNewButton_2);
 		
 		// Log out button

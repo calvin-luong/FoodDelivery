@@ -64,7 +64,7 @@ public class OrderHistory extends JFrame {
 			String m = o.getMeal();
 			double cost = o.getCost();
 			String customerAddress = o.getCustomerAddress();
-			textPane.setText(textPane.getText() + "\nName: " + name + "\nOrder #: " + orderNum + "\nDrink: " + d + "\nFood: " + f + "\nMeal: " + m + "\nCost: " + cost + "\nAddress: " + customerAddress + "\n");
+			textPane.setText(textPane.getText() + "\nOrder #: " + orderNum + "\nDrink: " + d + "\nFood: " + f + "\nMeal: " + m + "\nCost: " + cost + "\nAddress: " + customerAddress + "\n");
 		}
 		
 		JButton btnBack = new JButton("Back");
